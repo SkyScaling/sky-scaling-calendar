@@ -301,13 +301,12 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
 
 <script>
 /* ===== NEW THANK-YOU VIDEO (Oct 25 2026, with music) + VSL A/B booking count =====
-   Browsers that can't play the new file get the old video (CONFIRM_EMBED above). */
+   If the new file fails to load, the visitor gets the old video (CONFIRM_EMBED above). */
 (function(){
   var C = window.SKY_CONFIG; if(!C) return;
-  var NEW_TY = "https://assets.cdn.filesafe.space/cIEiGPHzRWPAUucJJ6QA/media/6ade29389c1511d5b9bcdf0b.mov";
-  var ok=false; try{ var tv=document.createElement('video'); ok=!!(tv.canPlayType && tv.canPlayType('video/mp4; codecs="hvc1.1.6.L120.90"')); }catch(e){}
+  var NEW_TY = "https://assets.cdn.filesafe.space/cIEiGPHzRWPAUucJJ6QA/media/6ade3156d542268bb4208404.mp4";
   C.CONFIRM_FALLBACK = C.CONFIRM_EMBED;
-  if(ok){ C.CONFIRM_EMBED = NEW_TY; C.CONFIRM_POSTER_TIME = 3; }
+  C.CONFIRM_EMBED = NEW_TY; C.CONFIRM_POSTER_TIME = 3;
   document.addEventListener('error', function(e){
     var t=e.target, fb=C.CONFIRM_FALLBACK; if(!t || t.tagName!=='VIDEO' || !t.closest || !t.closest('#confirm-mount')) return;
     if(!fb || (t.getAttribute('src')||'').indexOf(fb)===0) return;
