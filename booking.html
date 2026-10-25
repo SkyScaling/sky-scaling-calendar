@@ -17,6 +17,7 @@
     THANKYOU_URL: "thank-you.html",   /* page people land on AFTER they book (handled automatically) */
 
     /* Main video. Paste a YouTube / Vimeo link OR a direct .mp4 URL. Leave "" for a placeholder. */
+    /* Oct 25 2026: the VSL A/B TEST script near the bottom of this page now picks video A or B. This one only shows when a browser can't play those. */
     VSL_EMBED: "https://assets.cdn.filesafe.space/cIEiGPHzRWPAUucJJ6QA/media/6a71dcacfcee90cf63c6017d.mp4",
     VSL_POSTER_TIME: 1.7,   /* which second of the mp4 to freeze as the thumbnail; bump this if the frame looks off */
 
@@ -263,6 +264,43 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
 </div>
 
 <script src="https://link.skyscaling.com/js/form_embed.js"></script>
+<script>
+/* ===== VSL A/B TEST (started Oct 25 2026) =====
+   Half the visitors see video A (Credibility First), half see video B (Break the Belief).
+   Each visitor keeps the same video on later visits (saved in their browser).
+   Preview one yourself: add ?vsl=a or ?vsl=b to the link (those visits are not counted).
+   Browsers that can't play the new files get the old video (VSL_EMBED above) and are not counted.
+   Meta pixel custom events: VSL_A_View / VSL_B_View, VSL_A_Play / VSL_B_Play,
+   VSL_A_Half / VSL_B_Half (watched half), VSL_A_Booked / VSL_B_Booked (sent from the thank-you page). */
+(function(){
+  var C = window.SKY_CONFIG; if(!C) return;
+  var VSL = {
+    A: { src: "https://assets.cdn.filesafe.space/cIEiGPHzRWPAUucJJ6QA/media/6ade2938c9d5b7168d758ee1.mov", poster: 1.7 },
+    B: { src: "https://assets.cdn.filesafe.space/cIEiGPHzRWPAUucJJ6QA/media/6ade2938736386d0dcc20f9d.mov", poster: 1.2 }
+  };
+  var ok=false; try{ var tv=document.createElement('video'); ok=!!(tv.canPlayType && tv.canPlayType('video/mp4; codecs="hvc1.1.6.L120.90"')); }catch(e){}
+  C.VSL_FALLBACK = C.VSL_EMBED;
+  var m = location.search.match(/[?&]vsl=([ab])(?:&|$)/i), forced = m ? m[1].toUpperCase() : null;
+  if(!ok && !forced) return;
+  var k = forced, counted = !forced;
+  if(!k){ try{ k = localStorage.getItem('sky_vsl'); }catch(e){} }
+  if(k!=='A' && k!=='B'){ k = Math.random()<0.5 ? 'A' : 'B'; }
+  if(!forced){ try{ localStorage.setItem('sky_vsl', k); }catch(e){} }
+  C.VSL_EMBED = VSL[k].src; C.VSL_POSTER_TIME = VSL[k].poster; C.VSL_VARIANT = k;
+  function inVsl(t){ return t && t.tagName==='VIDEO' && t.closest && t.closest('#vsl-mount'); }
+  /* if the new file fails to play, switch to the old video and stop counting this visitor */
+  document.addEventListener('error', function(e){
+    var t=e.target, fb=C.VSL_FALLBACK; if(!inVsl(t) || !fb || (t.getAttribute('src')||'').indexOf(fb)===0) return;
+    counted=false; if(!forced){ try{ localStorage.removeItem('sky_vsl'); }catch(_){} }
+    var poster=/\bposter\b/.test(t.className); t.setAttribute('src', poster ? fb+'#t=1.7' : fb); if(!poster){ try{ t.play(); }catch(_){} }
+  }, true);
+  function ev(n){ if(!counted) return; try{ fbq('trackCustom','VSL_'+k+'_'+n); }catch(e){} try{ gtag('event','vsl_'+n.toLowerCase(),{vsl_variant:k}); }catch(e){} }
+  ev('View');
+  var played=false, half=false;
+  document.addEventListener('play', function(e){ if(played || !inVsl(e.target)) return; played=true; ev('Play'); }, true);
+  document.addEventListener('timeupdate', function(e){ var t=e.target; if(half || !inVsl(t) || !t.duration) return; if(t.currentTime/t.duration>=0.5){ half=true; ev('Half'); } }, true);
+})();
+</script>
 <script>
 (function(){
   var C = window.SKY_CONFIG || {};
