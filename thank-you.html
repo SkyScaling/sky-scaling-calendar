@@ -15,6 +15,7 @@
     LOGO_URL: "https://www.skyscaling.com/assets/sky-scaling-logo-vBi7C5xv.svg",
 
     /* Confirmation video ("your call is now locked in"). YouTube / Vimeo / .mp4 link. */
+    /* Oct 25 2026: the NEW THANK-YOU VIDEO script near the bottom of this page swaps in the new video. This one only shows when a browser can't play it. */
     CONFIRM_EMBED: "https://assets.cdn.filesafe.space/cIEiGPHzRWPAUucJJ6QA/media/6a71dca693ccff2840c0d521.mp4",
 
     /* Which second of the confirmation mp4 to freeze as the thumbnail. */
@@ -298,6 +299,28 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
 
 </div>
 
+<script>
+/* ===== NEW THANK-YOU VIDEO (Oct 25 2026, with music) + VSL A/B booking count =====
+   Browsers that can't play the new file get the old video (CONFIRM_EMBED above). */
+(function(){
+  var C = window.SKY_CONFIG; if(!C) return;
+  var NEW_TY = "https://assets.cdn.filesafe.space/cIEiGPHzRWPAUucJJ6QA/media/6ade29389c1511d5b9bcdf0b.mov";
+  var ok=false; try{ var tv=document.createElement('video'); ok=!!(tv.canPlayType && tv.canPlayType('video/mp4; codecs="hvc1.1.6.L120.90"')); }catch(e){}
+  C.CONFIRM_FALLBACK = C.CONFIRM_EMBED;
+  if(ok){ C.CONFIRM_EMBED = NEW_TY; C.CONFIRM_POSTER_TIME = 3; }
+  document.addEventListener('error', function(e){
+    var t=e.target, fb=C.CONFIRM_FALLBACK; if(!t || t.tagName!=='VIDEO' || !t.closest || !t.closest('#confirm-mount')) return;
+    if(!fb || (t.getAttribute('src')||'').indexOf(fb)===0) return;
+    var poster=/\bposter\b/.test(t.className); t.setAttribute('src', poster ? fb+'#t=1' : fb); if(!poster){ try{ t.play(); }catch(_){} }
+  }, true);
+  /* count this booking for the video the visitor saw on the booking page (A or B) */
+  var k=null; try{ k=localStorage.getItem('sky_vsl'); }catch(e){}
+  if(k==='A' || k==='B'){
+    var seen=false; try{ seen=!!sessionStorage.getItem('sky_vsl_booked'); sessionStorage.setItem('sky_vsl_booked','1'); }catch(e){}
+    if(!seen){ try{ fbq('trackCustom','VSL_'+k+'_Booked'); }catch(e){} try{ gtag('event','vsl_booked',{vsl_variant:k}); }catch(e){} }
+  }
+})();
+</script>
 <script>
 (function(){
   var C = window.SKY_CONFIG || {};
