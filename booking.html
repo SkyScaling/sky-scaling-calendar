@@ -269,19 +269,17 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
    Half the visitors see video A (Credibility First), half see video B (Break the Belief).
    Each visitor keeps the same video on later visits (saved in their browser).
    Preview one yourself: add ?vsl=a or ?vsl=b to the link (those visits are not counted).
-   Browsers that can't play the new files get the old video (VSL_EMBED above) and are not counted.
+   If a new file fails to load, that visitor gets the old video (VSL_EMBED above) and is not counted.
    Meta pixel custom events: VSL_A_View / VSL_B_View, VSL_A_Play / VSL_B_Play,
    VSL_A_Half / VSL_B_Half (watched half), VSL_A_Booked / VSL_B_Booked (sent from the thank-you page). */
 (function(){
   var C = window.SKY_CONFIG; if(!C) return;
   var VSL = {
-    A: { src: "https://assets.cdn.filesafe.space/cIEiGPHzRWPAUucJJ6QA/media/6ade2938c9d5b7168d758ee1.mov", poster: 1.7 },
-    B: { src: "https://assets.cdn.filesafe.space/cIEiGPHzRWPAUucJJ6QA/media/6ade2938736386d0dcc20f9d.mov", poster: 1.2 }
+    A: { src: "https://assets.cdn.filesafe.space/cIEiGPHzRWPAUucJJ6QA/media/6ade315236aa4a07e8c163c0.mp4", poster: 1.7 },
+    B: { src: "https://assets.cdn.filesafe.space/cIEiGPHzRWPAUucJJ6QA/media/6ade31549c1511d5b9bdb84f.mp4", poster: 1.2 }
   };
-  var ok=false; try{ var tv=document.createElement('video'); ok=!!(tv.canPlayType && tv.canPlayType('video/mp4; codecs="hvc1.1.6.L120.90"')); }catch(e){}
   C.VSL_FALLBACK = C.VSL_EMBED;
   var m = location.search.match(/[?&]vsl=([ab])(?:&|$)/i), forced = m ? m[1].toUpperCase() : null;
-  if(!ok && !forced) return;
   var k = forced, counted = !forced;
   if(!k){ try{ k = localStorage.getItem('sky_vsl'); }catch(e){} }
   if(k!=='A' && k!=='B'){ k = Math.random()<0.5 ? 'A' : 'B'; }
