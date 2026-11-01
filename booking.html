@@ -265,7 +265,7 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
 
 <script src="https://link.skyscaling.com/js/form_embed.js"></script>
 <script>
-/* ===== VSL A/B TEST (started Oct 25 2026) =====
+/* ===== VSL A/B TEST (Oct 25 to Nov 1 2026, winner: A) =====
    Half the visitors see video A (Credibility First), half see video B (Break the Belief).
    Each visitor keeps the same video on later visits (saved in their browser).
    Preview one yourself: add ?vsl=a or ?vsl=b to the link (those visits are not counted).
@@ -281,8 +281,8 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
   C.VSL_FALLBACK = C.VSL_EMBED;
   var m = location.search.match(/[?&]vsl=([ab])(?:&|$)/i), forced = m ? m[1].toUpperCase() : null;
   var k = forced, counted = !forced;
-  if(!k){ try{ k = localStorage.getItem('sky_vsl'); }catch(e){} }
-  if(k!=='A' && k!=='B'){ k = Math.random()<0.5 ? 'A' : 'B'; }
+  /* Nov 1 2026: test ended. Gabriel picked A (Credibility First), so every visitor gets A. ?vsl=b still previews B. */
+  if(!k){ k = 'A'; }
   if(!forced){ try{ localStorage.setItem('sky_vsl', k); }catch(e){} }
   C.VSL_EMBED = VSL[k].src; C.VSL_POSTER_TIME = VSL[k].poster; C.VSL_VARIANT = k;
   function inVsl(t){ return t && t.tagName==='VIDEO' && t.closest && t.closest('#vsl-mount'); }
