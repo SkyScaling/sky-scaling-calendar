@@ -152,6 +152,21 @@
   .sec-title{text-align:center;font-family:'Space Grotesk';font-weight:700;font-size:clamp(30px,4.4vw,40px);letter-spacing:-0.02em;line-height:1.1}
   .sec-title .a{color:var(--accent)}
   .sec-sub{text-align:center;color:var(--text-3);font-size:15px;margin:12px auto 0;max-width:560px;line-height:1.6}
+  /* written reviews (same as the booking page) */
+  .rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+  .rcard{border:1px solid var(--border);background:var(--panel);border-radius:var(--radius);padding:24px 24px 22px;display:flex;flex-direction:column;transition:transform .18s ease,border-color .18s ease}
+  .rcard:hover{transform:translateY(-3px);border-color:var(--border-strong)}
+  .rtop{display:flex;justify-content:space-between;align-items:center}
+  .rcard .rs{display:flex;gap:3px}
+  .rcard .rs svg{width:16px;height:16px;fill:#FBBC04}
+  .rq{width:26px;height:26px;fill:rgba(82,113,255,0.30)}
+  .rcard p{color:#DCE2F3;font-size:15.5px;line-height:1.65;margin-top:14px;flex:1}
+  .rw{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:16px;border-top:1px solid var(--border)}
+  .av{flex:none;width:38px;height:38px;border-radius:50%;background:var(--accent-tint);border:1px solid rgba(82,113,255,0.35);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;font-size:14px;color:#c3ccff}
+  .rn b{display:block;font-family:'Space Grotesk';font-weight:700;font-size:15.5px;letter-spacing:0.01em}
+  .rn span{display:block;margin-top:2px;font-size:13px;color:var(--text-3)}
+  @media(max-width:900px){.rgrid{grid-template-columns:1fr 1fr}}
+  @media(max-width:640px){.rgrid{grid-template-columns:1fr;margin-top:30px}}
   .divider{width:64px;height:3px;background:var(--grad);border-radius:99px;margin:20px auto 0}
 
   .ogrid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:40px}
@@ -245,7 +260,7 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
   <div class="confirm-badge"><div class="ring"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div></div>
   <div class="eyebrow">&lt; You're confirmed &gt;</div>
   <h1 class="hero">Your <span class="a">Discovery Call</span> Is Scheduled!</h1>
-  <p class="lead">Two quick things: <b>reply YES to the text we just sent</b>, and fill out the 2-minute form below. Then watch the short video, and scroll down for answers to the questions agents ask us before our call.</p>
+  <p class="lead">Two quick things: <b>reply YES to the text we just sent</b>, and <b>fill out the 2-minute form below</b>.</p>
 
   <div class="confirm-cta">
     <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg></div>
@@ -254,8 +269,6 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
       <p>We just sent you a text. Reply <b>YES</b> so we know you'll be picking up when we call.</p>
     </div>
   </div>
-
-  <div class="vwrap" id="confirm-mount"></div>
 
   <div class="form-cta">
     <a class="form-btn" href="https://pre-strategy-call-assessment.speakwithskyscaling.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><span>Fill Out the 2-Minute Form</span></a>
@@ -278,15 +291,23 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
   </section>
 
   <section>
-    <div class="sec-title">Get <span class="a">Answers</span> To Your Questions Before Our Call</div>
-    <div class="sec-sub">The honest answers to what most agents are thinking. Watch any that apply to you.</div>
+    <div class="sec-title">In Their <span class="a">Own Words</span></div>
+    <div class="sec-sub">Five-star reviews from agents who work with Sky Scaling.</div>
     <div class="divider"></div>
-    <div class="ogrid" id="ogrid"></div>
+    <div class="rgrid">
+      <div class="rcard"><div class="rtop"><div class="rs" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div><svg class="rq" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6C6.5 6 4 8.5 4 11.5V18h6v-6H7c0-1.7 1.3-3 3-3V6h-.5zm9 0C15.5 6 13 8.5 13 11.5V18h6v-6h-3c0-1.7 1.3-3 3-3V6h-.5z"/></svg></div><p>I have worked with different vendors over the last five years, and Gabriel has truly stood out. He has been ultra-reliable, reachable, and very committed to helping us get the results we are looking for. He works closely with you, makes sure everything is optimized properly, and focuses on generating quality, high-intent leads.</p><div class="rw"><span class="av" aria-hidden="true">DL</span><span class="rn"><b>Denesh Logeswaran</b><span>Life Agent</span></span></div></div>
+      <div class="rcard"><div class="rtop"><div class="rs" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div><svg class="rq" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6C6.5 6 4 8.5 4 11.5V18h6v-6H7c0-1.7 1.3-3 3-3V6h-.5zm9 0C15.5 6 13 8.5 13 11.5V18h6v-6h-3c0-1.7 1.3-3 3-3V6h-.5z"/></svg></div><p>When I was first looking at Sky Scaling I was skeptical. But after meeting with Gabriel and his team that changed quickly. The support of their team and the ease of use of the platform has been more than I thought it would be. The leads we have received have surpassed our expectations.</p><div class="rw"><span class="av" aria-hidden="true">DK</span><span class="rn"><b>Darrel Key</b><span>Life Agent</span></span></div></div>
+      <div class="rcard"><div class="rtop"><div class="rs" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div><svg class="rq" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6C6.5 6 4 8.5 4 11.5V18h6v-6H7c0-1.7 1.3-3 3-3V6h-.5zm9 0C15.5 6 13 8.5 13 11.5V18h6v-6h-3c0-1.7 1.3-3 3-3V6h-.5z"/></svg></div><p>I just started with Sky Scaling recently and they have been great. They do as they promise. Solid leads and Gabriel is constantly configuring the ads to best suit your situation. I strongly recommend!</p><div class="rw"><span class="av" aria-hidden="true">BL</span><span class="rn"><b>Blake Lewis</b><span>Life Agent</span></span></div></div>
+      <div class="rcard"><div class="rtop"><div class="rs" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div><svg class="rq" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6C6.5 6 4 8.5 4 11.5V18h6v-6H7c0-1.7 1.3-3 3-3V6h-.5zm9 0C15.5 6 13 8.5 13 11.5V18h6v-6h-3c0-1.7 1.3-3 3-3V6h-.5z"/></svg></div><p>Working with Gabriel is amazing. He is helping me with my marketing campaign to recruit licensed agents in the USA. His platform is everything he promised it would be. Especially his AI Assistant is saving me so much time.</p><div class="rw"><span class="av" aria-hidden="true">HB</span><span class="rn"><b>Hadi Bechara</b><span>Life Agent</span></span></div></div>
+      <div class="rcard"><div class="rtop"><div class="rs" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div><svg class="rq" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6C6.5 6 4 8.5 4 11.5V18h6v-6H7c0-1.7 1.3-3 3-3V6h-.5zm9 0C15.5 6 13 8.5 13 11.5V18h6v-6h-3c0-1.7 1.3-3 3-3V6h-.5z"/></svg></div><p>Sky Scaling has been a game changer for me in the cold market enabling me to reach 100s of potential clients and work with them. Definitely recommend them!</p><div class="rw"><span class="av" aria-hidden="true">AJ</span><span class="rn"><b>Antony John Paul</b><span>Life Agent</span></span></div></div>
+      <div class="rcard"><div class="rtop"><div class="rs" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div><svg class="rq" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6C6.5 6 4 8.5 4 11.5V18h6v-6H7c0-1.7 1.3-3 3-3V6h-.5zm9 0C15.5 6 13 8.5 13 11.5V18h6v-6h-3c0-1.7 1.3-3 3-3V6h-.5z"/></svg></div><p>I've been with Sky Scaling for almost 6 months now. No complaints at all. Gabriel is always there to fix anything that comes up, and everything has been super smooth and enjoyable. I definitely recommend.</p><div class="rw"><span class="av" aria-hidden="true">DG</span><span class="rn"><b>Dylan Gendron</b><span>Life Agent</span></span></div></div>
+    </div>
   </section>
 
   <section>
     <div class="sec-title">Real <span class="a">Results</span> From Agents Like You</div>
     <div class="sec-sub">Licensed agents in Canada and the US who work with Sky Scaling.</div>
+    <div class="divider"></div>
     <div class="logo-marquee" aria-label="Companies our agents work at"><div class="logo-track" id="logos"></div></div>
     <div class="tgrid" id="tgrid"></div>
   </section>
@@ -299,27 +320,6 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
 
 </div>
 
-<script>
-/* ===== NEW THANK-YOU VIDEO (Oct 25 2026, with music) + VSL A/B booking count =====
-   If the new file fails to load, the visitor gets the old video (CONFIRM_EMBED above). */
-(function(){
-  var C = window.SKY_CONFIG; if(!C) return;
-  var NEW_TY = "https://assets.cdn.filesafe.space/cIEiGPHzRWPAUucJJ6QA/media/6ade3156d542268bb4208404.mp4";
-  C.CONFIRM_FALLBACK = C.CONFIRM_EMBED;
-  C.CONFIRM_EMBED = NEW_TY; C.CONFIRM_POSTER_TIME = 3;
-  document.addEventListener('error', function(e){
-    var t=e.target, fb=C.CONFIRM_FALLBACK; if(!t || t.tagName!=='VIDEO' || !t.closest || !t.closest('#confirm-mount')) return;
-    if(!fb || (t.getAttribute('src')||'').indexOf(fb)===0) return;
-    var poster=/\bposter\b/.test(t.className); t.setAttribute('src', poster ? fb+'#t=1' : fb); if(!poster){ try{ t.play(); }catch(_){} }
-  }, true);
-  /* count this booking for the video the visitor saw on the booking page (A or B) */
-  var k=null; try{ k=localStorage.getItem('sky_vsl'); }catch(e){}
-  if(k==='A' || k==='B'){
-    var seen=false; try{ seen=!!sessionStorage.getItem('sky_vsl_booked'); sessionStorage.setItem('sky_vsl_booked','1'); }catch(e){}
-    if(!seen){ try{ fbq('trackCustom','VSL_'+k+'_Booked'); }catch(e){} try{ gtag('event','vsl_booked',{vsl_variant:k}); }catch(e){} }
-  }
-})();
-</script>
 <script>
 (function(){
   var C = window.SKY_CONFIG || {};
@@ -412,7 +412,7 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
 
   /* objections (horizontal 16:9) */
   var og=document.getElementById('ogrid');
-  (C.OBJECTIONS||[]).forEach(function(o){
+  (og?(C.OBJECTIONS||[]):[]).forEach(function(o){
     var card=document.createElement('div'); card.className="ocard";
     var q=document.createElement('div'); q.className="oq"; q.textContent=o.q||""; card.appendChild(q);
     card.appendChild(buildVid("r169", o.video, o.poster, o.ptime));
