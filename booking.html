@@ -111,7 +111,8 @@
   .eyebrow{text-align:center;color:var(--accent);font-family:'Space Grotesk';font-weight:700;font-size:13px;letter-spacing:0.22em;text-transform:uppercase;margin:58px 0 18px}
   h1.hero{text-align:center;font-weight:700;font-size:clamp(36px,5.6vw,52px);line-height:1.06;letter-spacing:-0.03em;max-width:900px;margin:0 auto}
   h1.hero .a{color:var(--accent)}
-  .lead{text-align:center;color:var(--text-2);font-size:clamp(16px,2.2vw,18px);line-height:1.7;max-width:600px;margin:12px auto 0}
+  .lead{text-align:center;color:var(--text-2);font-size:clamp(16px,2.2vw,18px);line-height:1.7;max-width:600px;margin:22px auto 0}
+  @media(max-width:700px){.lead{margin-top:12px}}
   .lead b{color:var(--text);font-weight:600}
   .proof{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin:26px auto 0;color:var(--text-2);font-size:14px}
   .proof span{display:inline-flex;align-items:center;gap:8px}
@@ -142,8 +143,16 @@
   #vsl-mount .vid.play-ready:hover .play{transform:scale(1.08)}
   #vsl-mount .play::after{content:"Play video";position:absolute;left:80px;top:50%;transform:translateY(-50%);white-space:nowrap;color:#fff;font-family:'Space Grotesk';font-weight:700;font-size:17px;letter-spacing:0.01em}
   @media(max-width:700px){.vhead{font-size:12.5px;padding:6px 10px;gap:7px}.vhead svg{width:11px;height:11px}#vsl-mount .play{width:44px;height:44px;bottom:9%}#vsl-mount .play svg{width:18px;height:18px}#vsl-mount .play::after{left:54px;font-size:13px}}
+
+  /* RESULTS NUMBERS (no-video test, Nov 4 2026) */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+  .stat{border:1px solid var(--border);background:var(--panel);border-radius:var(--radius);padding:26px 18px 24px;text-align:center}
+  .stat .n{font-family:'Space Grotesk';font-weight:700;font-size:clamp(40px,5vw,54px);line-height:1;letter-spacing:-0.03em;color:var(--accent)}
+  .stat .l{margin-top:12px;color:var(--text-2);font-size:15px;line-height:1.45}
+  .stat .l b{color:var(--text);font-weight:600}
+  @media(max-width:700px){.stats{grid-template-columns:1fr;gap:12px;margin-top:28px}.stat{padding:20px 16px}}
   /* BOOKING */
-  .book{background:var(--accent-tint);border:1px solid var(--border-strong);border-radius:24px;padding:clamp(26px,4vw,48px) clamp(16px,2.4vw,30px);margin:58px auto 0;max-width:896px}
+  .book{background:var(--accent-tint);border:1px solid var(--border-strong);border-radius:24px;padding:clamp(26px,4vw,48px) clamp(16px,2.4vw,30px);margin:40px auto 0;max-width:896px}
   .book h2{text-align:center;font-weight:700;font-size:clamp(28px,4vw,38px);line-height:1.1;letter-spacing:-0.02em;padding:0 8px}
   .book h2 .a{color:var(--accent)}
   .book .bsub{text-align:center;color:var(--text-2);font-size:15px;line-height:1.6;max-width:540px;margin:14px auto 0}
@@ -193,7 +202,7 @@
     .tgrid{grid-template-columns:1fr;margin-top:32px}
     .eyebrow{margin:42px 0 14px}
     .vwrap{margin-top:24px}
-    .book{margin-top:34px}
+    .book{margin-top:26px}
     section{padding:38px 0 0;margin-top:38px}
     .logo-item{height:24px;margin-right:20px}
     .logo-item img{height:24px;max-width:100px}
@@ -239,7 +248,8 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
 
   <div class="eyebrow">&lt; For licensed agents, 1+ year in &gt;</div>
   <h1 class="hero">Be the Agent <span style="white-space:nowrap">People Know</span><br> <span class="a" style="white-space:nowrap">Before You Call.</span></h1>
-  <p class="lead"><b>You already know how to sell. What you're missing is visibility.</b> We grow your socials and run ads from your own Facebook and Instagram, so the right clients or recruits come to you, every month.</p>
+  <p class="lead"><b id="lead-b">You already know how to sell. What you're missing is visibility.</b> We grow your socials and run ads from your own Facebook and Instagram, so the right clients or recruits come to you, every month.</p>
+  <script>/* US visitors (by time zone, same test as the logos) get the bought-leads line. Canada keeps the visibility line. */(function(){var tz="";try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){}if(/^(America\/(New_York|Chicago|Denver|Los_Angeles|Phoenix|Anchorage|Juneau|Sitka|Nome|Yakutat|Metlakatla|Adak|Boise|Detroit|Menominee|Indiana\/.+|Kentucky\/.+|North_Dakota\/.+)|Pacific\/Honolulu|US\/.+)$/.test(tz)){var b=document.getElementById("lead-b");if(b){b.textContent="Bought leads don't know you. People who see you every week already trust you.";}}})();</script>
 
   <div class="proof">
     <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>200+ agents served</span>
@@ -249,10 +259,7 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
 
   <div class="logo-marquee" aria-label="Companies our agents work at"><div class="logo-track" id="logos"></div></div>
 
-  <div class="vwrap">
-    <div class="vhead"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>Watch this 2-minute video before you book</div>
-    <div id="vsl-mount"></div>
-  </div>
+  <!-- Nov 4 2026 test: no video. The calendar sits right under the logos; results move under the calendar. -->
 
   <div class="book">
     <h2>15 Minutes. <span class="a" style="white-space:nowrap">A Straight Answer.</span></h2>
@@ -267,6 +274,11 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
     <div class="sec-title">Real <span class="a">Results</span> From Agents Like You</div>
     <div class="sec-sub">Licensed agents in Canada and the US who work with Sky Scaling.</div>
     <div class="divider"></div>
+    <div class="stats" id="stats">
+      <div class="stat"><div class="n" data-to="16" data-pre="$" data-post="K+">$16K+</div><div class="l">submitted in his <b>first 20 days</b><br>Chris Bee</div></div>
+      <div class="stat"><div class="n" data-to="15" data-pre="$" data-post="K">$15K</div><div class="l">in his <b>first 15 days</b> of ads<br>Elroy</div></div>
+      <div class="stat"><div class="n" data-to="17" data-pre="" data-post="">17</div><div class="l">agents recruited in <b>7 weeks</b><br>Victor</div></div>
+    </div>
     <div class="tgrid" id="tgrid"></div>
   </section>
 
@@ -289,6 +301,7 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
    VSL_A_Half / VSL_B_Half (watched half), VSL_A_Booked / VSL_B_Booked (sent from the thank-you page). */
 (function(){
   var C = window.SKY_CONFIG; if(!C) return;
+  if(!document.getElementById('vsl-mount')) return; /* no-video test (Nov 4 2026) */
   var VSL = {
     A: { src: "https://assets.cdn.filesafe.space/cIEiGPHzRWPAUucJJ6QA/media/6ade315236aa4a07e8c163c0.mp4", poster: 1.7 },
     B: { src: "https://assets.cdn.filesafe.space/cIEiGPHzRWPAUucJJ6QA/media/6ade31549c1511d5b9bdb84f.mp4", poster: 1.2 }
@@ -454,5 +467,13 @@ src="https://www.facebook.com/tr?id=1532837473873011&ev=PageView&noscript=1"
   }, false);
 })();
 </script>
+<script>/* count the result numbers up when they scroll into view */
+(function(){var els=[].slice.call(document.querySelectorAll('#stats .n'));if(!els.length)return;
+var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(still||!('IntersectionObserver' in window))return;
+els.forEach(function(e){e.textContent=e.getAttribute('data-pre')+'0'+e.getAttribute('data-post');});
+function run(e){var to=+e.getAttribute('data-to'),pre=e.getAttribute('data-pre'),post=e.getAttribute('data-post'),t0=null,d=1200;
+function f(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/d),v=Math.round(to*(1-Math.pow(1-p,3)));e.textContent=pre+v+post;if(p<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
+var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){run(x.target);io.unobserve(x.target);}});},{threshold:0.4});
+els.forEach(function(e){io.observe(e);});})();</script>
 </body>
 </html>

@@ -143,8 +143,16 @@
   #vsl-mount .vid.play-ready:hover .play{transform:scale(1.08)}
   #vsl-mount .play::after{content:"Play video";position:absolute;left:80px;top:50%;transform:translateY(-50%);white-space:nowrap;color:#fff;font-family:'Space Grotesk';font-weight:700;font-size:17px;letter-spacing:0.01em}
   @media(max-width:700px){.vhead{font-size:12.5px;padding:6px 10px;gap:7px}.vhead svg{width:11px;height:11px}#vsl-mount .play{width:44px;height:44px;bottom:9%}#vsl-mount .play svg{width:18px;height:18px}#vsl-mount .play::after{left:54px;font-size:13px}}
+
+  /* RESULTS NUMBERS (no-video test, Nov 4 2026) */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+  .stat{border:1px solid var(--border);background:var(--panel);border-radius:var(--radius);padding:26px 18px 24px;text-align:center}
+  .stat .n{font-family:'Space Grotesk';font-weight:700;font-size:clamp(40px,5vw,54px);line-height:1;letter-spacing:-0.03em;color:var(--accent)}
+  .stat .l{margin-top:12px;color:var(--text-2);font-size:15px;line-height:1.45}
+  .stat .l b{color:var(--text);font-weight:600}
+  @media(max-width:700px){.stats{grid-template-columns:1fr;gap:12px;margin-top:28px}.stat{padding:20px 16px}}
   /* BOOKING */
-  .book{background:var(--accent-tint);border:1px solid var(--border-strong);border-radius:24px;padding:clamp(26px,4vw,48px) clamp(16px,2.4vw,30px);margin:58px auto 0;max-width:896px}
+  .book{background:var(--accent-tint);border:1px solid var(--border-strong);border-radius:24px;padding:clamp(26px,4vw,48px) clamp(16px,2.4vw,30px);margin:40px auto 0;max-width:896px}
   .book h2{text-align:center;font-weight:700;font-size:clamp(28px,4vw,38px);line-height:1.1;letter-spacing:-0.02em;padding:0 8px}
   .book h2 .a{color:var(--accent)}
   .book .bsub{text-align:center;color:var(--text-2);font-size:15px;line-height:1.6;max-width:540px;margin:14px auto 0}
@@ -194,7 +202,7 @@
     .tgrid{grid-template-columns:1fr;margin-top:32px}
     .eyebrow{margin:42px 0 14px}
     .vwrap{margin-top:24px}
-    .book{margin-top:34px}
+    .book{margin-top:26px}
     section{padding:38px 0 0;margin-top:38px}
     .logo-item{height:24px;margin-right:20px}
     .logo-item img{height:24px;max-width:100px}
@@ -228,10 +236,7 @@
 
   <div class="logo-marquee" aria-label="Companies our agents work at"><div class="logo-track" id="logos"></div></div>
 
-  <div class="vwrap">
-    <div class="vhead"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>Watch this 2-minute video before you book</div>
-    <div id="vsl-mount"></div>
-  </div>
+  <!-- Nov 4 2026 test: no video. The calendar sits right under the logos; results move under the calendar. -->
 
   <div class="book">
     <h2>15 Minutes. <span class="a" style="white-space:nowrap">A Straight Answer.</span></h2>
@@ -246,6 +251,11 @@
     <div class="sec-title">Real <span class="a">Results</span> From Agents Like You</div>
     <div class="sec-sub">Licensed agents in Canada and the US who work with Sky Scaling.</div>
     <div class="divider"></div>
+    <div class="stats" id="stats">
+      <div class="stat"><div class="n" data-to="16" data-pre="$" data-post="K+">$16K+</div><div class="l">submitted in his <b>first 20 days</b><br>Chris Bee</div></div>
+      <div class="stat"><div class="n" data-to="15" data-pre="$" data-post="K">$15K</div><div class="l">in his <b>first 15 days</b> of ads<br>Elroy</div></div>
+      <div class="stat"><div class="n" data-to="17" data-pre="" data-post="">17</div><div class="l">agents recruited in <b>7 weeks</b><br>Victor</div></div>
+    </div>
     <div class="tgrid" id="tgrid"></div>
   </section>
 
@@ -268,6 +278,7 @@
    VSL_A_Half / VSL_B_Half (watched half), VSL_A_Booked / VSL_B_Booked (sent from the thank-you page). */
 (function(){
   var C = window.SKY_CONFIG; if(!C) return;
+  if(!document.getElementById('vsl-mount')) return; /* no-video test (Nov 4 2026) */
   var VSL = {
     A: { src: "https://assets.cdn.filesafe.space/cIEiGPHzRWPAUucJJ6QA/media/6ade315236aa4a07e8c163c0.mp4", poster: 1.7 },
     B: { src: "https://assets.cdn.filesafe.space/cIEiGPHzRWPAUucJJ6QA/media/6ade31549c1511d5b9bdb84f.mp4", poster: 1.2 }
@@ -433,6 +444,14 @@
   }, false);
 })();
 </script>
+<script>/* count the result numbers up when they scroll into view */
+(function(){var els=[].slice.call(document.querySelectorAll('#stats .n'));if(!els.length)return;
+var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(still||!('IntersectionObserver' in window))return;
+els.forEach(function(e){e.textContent=e.getAttribute('data-pre')+'0'+e.getAttribute('data-post');});
+function run(e){var to=+e.getAttribute('data-to'),pre=e.getAttribute('data-pre'),post=e.getAttribute('data-post'),t0=null,d=1200;
+function f(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/d),v=Math.round(to*(1-Math.pow(1-p,3)));e.textContent=pre+v+post;if(p<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
+var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){run(x.target);io.unobserve(x.target);}});},{threshold:0.4});
+els.forEach(function(e){io.observe(e);});})();</script>
 <div style="position:fixed;left:10px;bottom:10px;z-index:9999;background:#5271FF;color:#fff;font:600 12px/1 system-ui,sans-serif;padding:7px 10px;border-radius:999px;opacity:.9">Preview: US visitor</div>
 </body>
 </html>
